@@ -1,6 +1,8 @@
 // two routes //
+app.get("/", function(req, res) {
+    // this should show the home page.
+})
 
-// one GET route to '/survey' (should display the survey page);
-
-
-// one default catch all route that leads to the home.html page. (should display the homepage)
+app.get("/survey", function(req, res){
+    // this should display the survey page.
+})
