@@ -1,8 +1,13 @@
 // two routes //
-app.get("/", function(req, res) {
-    // this should show the home page.
-})
+var path = require("path");
 
-app.get("/survey", function(req, res){
-    // this should display the survey page.
-})
+module.exports = function(app) {
+    app.get("/", function(req, res) {
+        // show the homepage
+    });
+
+    app.get("/survey", function(req, res) {
+        // this should display the survey page.
+    })
+
+}
