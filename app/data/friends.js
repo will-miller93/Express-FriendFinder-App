@@ -1,7 +1,6 @@
 // friends api data
 /////////////////////////////////////////////////////////////////////////////
-module.exports = {
-    friends: [
+var friends = [
         {
             name: "John Doe",
             photo: "",
@@ -18,5 +17,8 @@ module.exports = {
                 "5"
             ]
         }
-    ]
-}
+    ];
+
+
+
+module.exports = friends;

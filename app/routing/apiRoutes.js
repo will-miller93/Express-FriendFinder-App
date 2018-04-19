@@ -1,62 +1,70 @@
 // Two routes //
 // require the data file to be accessed by these get and post requests.
-var friendsData = require("app/data/friends.js");
+var friendsData = require("../data/friends.js");
 
-// module.exports = function(app) {
-//     app.get("/api/friends", function(req, res) {
-//         res.send(friendsData);
-//     });
+module.exports = function (app) {
+    app.get("/api/friends", function (req, res) {
+        res.json(friendsData);
+    })
 
-//     app.post("/api/friends", function(req,res) {
-//             var bestMatch = {
-//                 name: "",
-//                 img: "",
-//                 friendDiff = 1000
-//             }
-//             // variable bestfriend is equal to the parsed data from the friendsAPI
-//             var bestFriend = req.body;
-//             var userScore = newFriend.scores;
-//             var totalDiff = 0;
-
-//             for (var i = 0; i < friendsData.length; i++) {
-//                 console.log(friendsData[i]);
-//                 totalDiff = 0;
-                
-//                 for ( var j = 0; j < friendsData[i].scores[j]; j++) {
-//                     totalDiff += Math.abs(parseInt(userScore[j]) - parseInt(friendsData[i].scores));
-
-//                     if (totalDiff <= bestMatch.friendDiff) {
-//                         bestMatch.name = friendsData[i].name;
-//                         bestMatch.img = friendsData[i].img;
-//                         bestMatch.friendDiff = totalDiff;
-//                     }
+//     app.post("/api/friends", function (app, res) {
+//         var diffArr = [];
+//         var userScore = req.body.scores;
+//         var bestMatch;
+//         var lowestDiff;
+//         var DiffIndex;
+//         for (var i = 0; i < friendsData.length; i++){
+//             var diff = 0;
+//             for (var j = 0; j < friendsData.length[i].scores.length; j++) {
+//                 diff += Math.abs(friendsData[i].scores[j] - userScore[i]);
+//                 diffArr.push(diff); 
+//                 console.log(diffArr);
+//                 // finding the smallest number in this array.
+//                 Array.min =  function(diffArr) {
+//                     return Math.min.apply(Math, diffArr);
+//                 }
+//                 lowestDiff = Array.min(diffArr);
+//                 // looping through the array holding all of the differences
+//                 for (var x = 0; x < diffArr.length; x++) {
+//                     if (diffArr[x] === lowestDiff){
+//                         // compare the friendsData[i].length to the diffArr[x]
+//                         // when you find the matching indexes.
+//                         // push to the friendsData API
+//                         // res.send(bestMatch) to the modal.
+                            
+//                     }           
 //                 }
 //             }
-//             friendsData.push(newFriend);
-//             res.json(bestMatch);
-//     });
-// }
-
-// module.exports = function(app) {
-//     app.get("/api/friends", function(req, res) {
-//         res.send(friendsData);
-//     });
-
-//     app.post("/api/friends", function(req, res) {
-//         // if statement finding the length of the friends api
-//         if (friendsData.length < 2) {
-//             // match these two together.
 //         }
-//         else {
-//             // for loop through the length of the friends api (friendsData)
-//                 // console.log(friendsData[i]); this is console logging all of the data for each of the friend objects in the api
-//                 // make the difference variable equal to 0 
+//     })
 
-//                 // another for loop to loop through the scores of each of the friends in the friends api
-//                     // finding the difference of each of the friends scores in the api and the current users score
-//                     // if statement denoting the friend object in the friends api that has the lowest difference
-//                         // making that friend object the best match and logging all of that information to the modal.
+    app.post("/api/friends", function(req, res) {
+        var friendMatch = {
+            name: "",
+            img: "",
+            friendDiff: 1000
+        }
+        
+        var newFriend = req.body;
+        var userScore = newFriend.scores;
+        var totalDiff = 0;
 
-//         }
-//     }
-// }
+        for (var i = 0; i < friendsData; i++) {
+            console.log(friendsData[i]);
+            totalDiff = 0;
+            for (var j = 0; j < friendsData[i].scores[j]; j++) {
+                totalDiff += Math.abs(parseInt(userScore[j]) - parseInt(friendsData[i].scores[j]));
+
+                if ( totalDiff <= friendMatch.friendDiff) {
+                    friendMatch.name = friendsData[i].name;
+                    friendMatch.img = friendsData[i].img;
+                    friendMatch.friendDiff = totalDiff;
+                }
+            }
+        }
+        friendsData.push(newFriend);
+        res.json(friendMatch);
+    });
+};
+
+// difference = sum of the differences of each index of the arrays

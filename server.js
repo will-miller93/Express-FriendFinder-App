@@ -17,12 +17,8 @@ app.use(bodyParser.json());
 // routes 
 ////////////////////////////////////////////////////////////////////////////
 
-require(__dirname + "/app/routing/htmlRoutes.js");
-require(__dirname + "/app/routing/apiRoutes.js");
-
-// var root = __dirname;
-// require("./app/routing/htmlRoutes.js")(app,root);
-// require("./app/routing/apiRoutes.js")(app,root);
+require("./app/routing/htmlRoutes.js")(app);
+require("./app/routing/apiRoutes.js")(app);
 
 // sets up the listener
 ////////////////////////////////////////////////////////////////////////////
