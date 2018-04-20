@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col l12">
+            <form class="col l12">
                 <h3>
                     <bold>About You</bold>
                 </h3>
@@ -33,13 +33,15 @@
                 <br>
                 <label for="link">Link to photo image</label>
                 <input placeholder="put link here" id="link" type="text" class="validate">
-            </div>
+            </form>
         </div>
         <div class="row">
             <div class="col l12">
                 <h3>Question One!</h3>
                 <p>Your mind is always buzzing with unexplored ideas and plans.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesOne">
                         <option value="" disabled selected>Choose your option</option>
@@ -50,6 +52,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -58,6 +62,8 @@
                 <h3>Question Two!</h3>
                 <p>Generally speaking, you rely more on your experience than your imagination.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesTwo">
                         <option value="" disabled selected>Choose your option</option>
@@ -68,6 +74,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -76,6 +84,8 @@
                 <h3>Question Three!</h3>
                 <p>You find it easy to stay relaxed and focused under pressure.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesThree">
                         <option value="" disabled selected>Choose your option</option>
@@ -86,6 +96,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -94,6 +106,8 @@
                 <h3>Question Four!</h3>
                 <p>You rarely do something out of sheer curiosity</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesFour">
                         <option value="" disabled selected>Choose your option</option>
@@ -104,6 +118,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -112,6 +128,8 @@
                 <h3>Question Five!</h3>
                 <p>People can rarely upset you.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesFive">
                         <option value="" disabled selected>Choose your option</option>
@@ -122,6 +140,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -130,6 +150,8 @@
                 <h3>Question Six!</h3>
                 <p>It is often too difficult for you to relate to other peoples feelings.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesSix">
                         <option value="" disabled selected>Choose your option</option>
@@ -140,6 +162,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -148,6 +172,8 @@
                 <h3>Question Seven!</h3>
                 <p>In a discussion, truth is more important than others sensitivites.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesSeven">
                         <option value="" disabled selected>Choose your option</option>
@@ -158,6 +184,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -166,6 +194,8 @@
                 <h3>Question Eight!</h3>
                 <p>You rarely get carried away by fantasies and ideas.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesEight">
                         <option value="" disabled selected>Choose your option</option>
@@ -176,6 +206,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -184,6 +216,8 @@
                 <h3>Question Nine!</h3>
                 <p>You think everone's views should be respected regardless of whether they are supported by facts or not.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesNine">
                         <option value="" disabled selected>Choose your option</option>
@@ -194,6 +228,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -202,6 +238,8 @@
                 <h3>Question Ten!</h3>
                 <p>You feel more energetic after spending time with a group of people.</p>
                 <label>Select an Option</label>
+                <form>
+                <span>
                 <div class="input-field">
                     <select id="quesTen">
                         <option value="" disabled selected>Choose your option</option>
@@ -212,6 +250,8 @@
                         <option value="5"> 5 (Strongly Agree)</option>
                     </select>
                 </div>
+                </span>
+                </form>
             </div>
         </div>
         <br>
@@ -265,7 +305,23 @@
         // on click event for the submit button
         $("#submitAnswers").on('click', function() {
             event.preventDefault;
-
+            
+            function validateForm() {
+                var valid = true;
+                $("form-control").each(function(){
+                    if($(this).val() === "") {
+                        valid = false;
+                    }
+                });
+                $("select").each(function() {
+                    if($(this).val() === "") {
+                        valid = false;
+                    }
+                    else {valid = true;}
+                });
+                return valid;
+            }
+            
             var userInput = {
                 name: $("#name").val().trim(),
                 img: $("#link").val().trim(),
@@ -290,6 +346,7 @@
                     $("bestFriendImg").attr("src", data.bestFriendImg);
                     $("#modal1").modal("open");
                 });
+            validateForm(); 
         });
     </script>
 
