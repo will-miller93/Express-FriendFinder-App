@@ -2,7 +2,7 @@
 var path = require("path");
 // console.log("im here");
 // require the data file to be accessed by these get and post requests
-var friends = require("../data/friends.js").default;
+var friends = require("../data/friends.js");
 // console.log("im still here");
 
 module.exports = function (app) {
