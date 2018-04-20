@@ -35,6 +35,6 @@ var friends = [
         }
     ];
 
-
+console.log("all good here");
 
 module.exports = friends;
