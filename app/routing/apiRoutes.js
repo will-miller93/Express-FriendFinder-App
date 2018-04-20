@@ -1,70 +1,46 @@
-// Two routes //
-// require the data file to be accessed by these get and post requests.
+// dependencies
+var path = require("path");
+
+// require the data file to be accessed by these get and post requests
 var friendsData = require("../data/friends.js");
 
 module.exports = function (app) {
     app.get("/api/friends", function (req, res) {
         res.json(friendsData);
-    })
+    });
 
-//     app.post("/api/friends", function (app, res) {
-//         var diffArr = [];
-//         var userScore = req.body.scores;
-//         var bestMatch;
-//         var lowestDiff;
-//         var DiffIndex;
-//         for (var i = 0; i < friendsData.length; i++){
-//             var diff = 0;
-//             for (var j = 0; j < friendsData.length[i].scores.length; j++) {
-//                 diff += Math.abs(friendsData[i].scores[j] - userScore[i]);
-//                 diffArr.push(diff); 
-//                 console.log(diffArr);
-//                 // finding the smallest number in this array.
-//                 Array.min =  function(diffArr) {
-//                     return Math.min.apply(Math, diffArr);
-//                 }
-//                 lowestDiff = Array.min(diffArr);
-//                 // looping through the array holding all of the differences
-//                 for (var x = 0; x < diffArr.length; x++) {
-//                     if (diffArr[x] === lowestDiff){
-//                         // compare the friendsData[i].length to the diffArr[x]
-//                         // when you find the matching indexes.
-//                         // push to the friendsData API
-//                         // res.send(bestMatch) to the modal.
-                            
-//                     }           
-//                 }
-//             }
-//         }
-//     })
+    app.post("/api/friends", function (req, res) {
+        // capture user input.
+        var userInput = req.body;
+        var userScores = userInput.scores;
 
-    app.post("/api/friends", function(req, res) {
-        var friendMatch = {
-            name: "",
-            img: "",
-            friendDiff: 1000
-        }
-        
-        var newFriend = req.body;
-        var userScore = newFriend.scores;
-        var totalDiff = 0;
+        // find bestFriend
+        var bestFriendName = '';
+        var bestFriendImg = '';
+        // make totalDifference equal to a very large number so the actual differences cannot equal it.
+        // makes initial comparison easier.
+        var totalDifference = 10000;
 
-        for (var i = 0; i < friendsData; i++) {
-            console.log(friendsData[i]);
-            totalDiff = 0;
-            for (var j = 0; j < friendsData[i].scores[j]; j++) {
-                totalDiff += Math.abs(parseInt(userScore[j]) - parseInt(friendsData[i].scores[j]));
-
-                if ( totalDiff <= friendMatch.friendDiff) {
-                    friendMatch.name = friendsData[i].name;
-                    friendMatch.img = friendsData[i].img;
-                    friendMatch.friendDiff = totalDiff;
-                }
+        // examine all existing friends in the friendsData API
+        for (var i = 0; i < friendsData.length; i++) {
+            // set initial value equal to zero.
+            var difference = 0;
+            // another for loop to loop through each of the scores arrays for the friendsData api
+            for (var j = 0; j < userScores.length; j++) {
+                diff += Math.abs(friendsData[i].scores[j] - userScores[j]);
+            }
+            if ( diff < totalDifference ) {
+                // make the total difference equal to the diff as it loops through so the result at the end of the loop
+                // is the true lowest difference
+                totalDifference = diff;
+                bestFriendName = friendsData[i].name;
+                bestFriendImg = friendsData[i].img;
             }
         }
-        friendsData.push(newFriend);
-        res.json(friendMatch);
+        // adds the current user to the friendsData api
+        friendsData.push(userInput);
+
+        // sends the response.
+        res.json({bestFriendName: bestFriendName, bestFriendImg: bestFriendImg});
     });
 };
-
-// difference = sum of the differences of each index of the arrays

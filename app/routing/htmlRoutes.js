@@ -1,13 +1,15 @@
 // two routes //
 var path = require("path");
 
+// export the html routes.
 module.exports = function(app) {
+
     app.get("/", function(req, res) {
-        // show the homepage
+        res.sendFile(path.join(__dirname, '../public/home.html'));
     });
 
     app.get("/survey", function(req, res) {
-        // this should display the survey page.
-    })
+        res.sendFile(path.join(__dirname, '../public/survey.html'));
+    });
 
 }

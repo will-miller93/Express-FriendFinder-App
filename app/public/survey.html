@@ -41,7 +41,7 @@
                 <p>Your mind is always buzzing with unexplored ideas and plans.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesOne">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -59,7 +59,7 @@
                 <p>Generally speaking, you rely more on your experience than your imagination.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesTwo">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -77,7 +77,7 @@
                 <p>You find it easy to stay relaxed and focused under pressure.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesThree">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -95,7 +95,7 @@
                 <p>You rarely do something out of sheer curiosity</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesFour">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -113,7 +113,7 @@
                 <p>People can rarely upset you.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesFive">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -131,7 +131,7 @@
                 <p>It is often too difficult for you to relate to other peoples feelings.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesSix">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -149,7 +149,7 @@
                 <p>In a discussion, truth is more important than others sensitivites.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesSeven">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -167,7 +167,7 @@
                 <p>You rarely get carried away by fantasies and ideas.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesEight">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -185,7 +185,7 @@
                 <p>You think everone's views should be respected regardless of whether they are supported by facts or not.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesNine">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -203,7 +203,7 @@
                 <p>You feel more energetic after spending time with a group of people.</p>
                 <label>Select an Option</label>
                 <div class="input-field">
-                    <select>
+                    <select id="quesTen">
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1"> 1 (Strongly Disagree)</option>
                         <option value="2"> 2 (Disagree)</option>
@@ -239,8 +239,10 @@
         <div class="modal-content">
             <div class="container">
                 <div class="row">
-                    <h5> Your new friend </h5>
-                    <h4 id=""
+                    <h3> Your new friend </h5>
+                    <div class="divider"></div>
+                    <h4 id="bestFriendName"></h4>
+                    <img class="materialboxed" id="bestFriendImg" src="">
                 </div>
             </div>
         </div>
@@ -250,6 +252,44 @@
         // this should initialize the select fields. //
         $(document).ready(function () {
             $('select').material_select();
+            $('.modal').modal({
+                dismissable: false,
+                opacity: .5,
+                inDuration: 300,
+                outDuration: 200,
+                startingTop: '4%',
+                endingTop: '10%'
+            });
+        });
+
+        // on click event for the submit button
+        $("#submitAnswers").on('click', function() {
+            event.preventDefault;
+
+            var userInput = {
+                name: $("#name").val().trim(),
+                img: $("#link").val().trim(),
+                scores: [
+                    $("#quesOne").val().trim(),
+                    $("#quesTwo").val().trim(),
+                    $("#quesThree").val().trim(),
+                    $("#quesFour").val().trim(),
+                    $("#quesFive").val().trim(),
+                    $("#quesSix").val().trim(),
+                    $("#quesSeven").val().trim(),
+                    $("#quesEight").val().trim(),
+                    $("#quesNine").val().trim(),
+                    $("#quesTen").val().trim()
+
+                ]
+            };
+            // adds user input to array in the friendsData API
+            $.post("/api/friends", userInput)
+                .done(function(data){
+                    $("#bestFriendName").html(data.bestFriendName);
+                    $("bestFriendImg").attr("src", data.bestFriendImg);
+                    $("#modal1").modal("open");
+                });
         });
     </script>
 
