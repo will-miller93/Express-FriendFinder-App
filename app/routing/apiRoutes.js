@@ -1,14 +1,14 @@
 // dependencies
 var path = require("path");
-console.log("im here");
+// console.log("im here");
 // require the data file to be accessed by these get and post requests
 var friends = require("../data/friends.js").default;
-console.log("im still here");
+// console.log("im still here");
 
 module.exports = function (app) {
     app.get("/api/friends", function (req, res) {
         res.json(friends);
-        console.log("yep this works");
+        // console.log("yep this works");
     });
 
     app.post("/api/friends", function (req, res) {
