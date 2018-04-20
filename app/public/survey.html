@@ -257,7 +257,7 @@
         <br>
         <div class="row">
             <div class="col l12">
-                <button class="waves-effect waves-light btn" id="submitAnswers">Submit
+                <button data-target="modal1" class="waves-effect waves-light btn modal-trigger" id="submitAnswers">Submit
                     <i class="material-icons left">subdirectory_arrow_right</i>
                 </button>
             </div>
@@ -293,64 +293,65 @@
     <script type="text/javascript">
         // this should initialize the select fields. //
         $(document).ready(function () {
+            // initializes the select dropdowns.
             $('select').material_select();
+            // initializes the modal
             $('.modal').modal({
-                dismissable: false,
+                dismissable: true,
                 opacity: .5,
                 inDuration: 300,
                 outDuration: 200,
                 startingTop: '4%',
                 endingTop: '10%'
             });
+            // on click event for the submit button
+            $("#submitAnswers").on('click', function() {
+                event.preventDefault();
+            
+                function validateForm() {
+                    var valid = true;
+                    $("form-control").each(function(){
+                        if($(this).val() === "") {
+                            valid = false;
+                        }
+                    });
+                    $("select").each(function() {
+                        if($(this).val() === "") {
+                            valid = false;
+                        }
+                        else {valid = true;}
+                    });
+                    return valid;
+                }
+            
+                if (validateForm() === true) {
+                        var userInput = {
+                        name: $("#name").val().trim(),
+                        img: $("#link").val().trim(),
+                        scores: [
+                            $("#quesOne").val().trim(),
+                            $("#quesTwo").val().trim(),
+                            $("#quesThree").val().trim(),
+                            $("#quesFour").val().trim(),
+                            $("#quesFive").val().trim(),
+                            $("#quesSix").val().trim(),
+                            $("#quesSeven").val().trim(),
+                            $("#quesEight").val().trim(),
+                            $("#quesNine").val().trim(),
+                            $("#quesTen").val().trim()
+
+                        ]
+                    };
+                    // adds user input to array in the friendsData API and opens the modal
+                    $.post("/api/friends", userInput, function(data) {
+                        $("#bestFriendName").text(data.bestFriendName);
+                        $("bestFriendImg").attr("src", data.bestFriendImg);
+                        $("#modal1").modal("open");
+                    })
+                }
+                validateForm(); 
+            });
         });
-
-        // on click event for the submit button
-        $("#submitAnswers").on('click', function() {
-            event.preventDefault;
-            
-            function validateForm() {
-                var valid = true;
-                $("form-control").each(function(){
-                    if($(this).val() === "") {
-                        valid = false;
-                    }
-                });
-                $("select").each(function() {
-                    if($(this).val() === "") {
-                        valid = false;
-                    }
-                    else {valid = true;}
-                });
-                return valid;
-            }
-            
-            if (validateForm() === true) {
-                var userInput = {
-                name: $("#name").val().trim(),
-                img: $("#link").val().trim(),
-                scores: [
-                    $("#quesOne").val().trim(),
-                    $("#quesTwo").val().trim(),
-                    $("#quesThree").val().trim(),
-                    $("#quesFour").val().trim(),
-                    $("#quesFive").val().trim(),
-                    $("#quesSix").val().trim(),
-                    $("#quesSeven").val().trim(),
-                    $("#quesEight").val().trim(),
-                    $("#quesNine").val().trim(),
-                    $("#quesTen").val().trim()
-
-                ]
-            };
-            // adds user input to array in the friendsData API and opens the modal
-            $.post("/api/friends", userInput, function(data) {
-                $("#bestFriendName").text(data.bestFriendName);
-                $("bestFriendImg").attr("src", data.bestFriendImg);
-                $("#modal1").modal("open");
-            })
-        }
-        validateForm(); 
-    });
     </script>
 
 </body>
