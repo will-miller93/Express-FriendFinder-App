@@ -27,7 +27,7 @@ module.exports = function (app) {
         for (var i = 0; i < friends.length; i++) {
             console.log(friends[i]);
             // set initial value equal to zero.
-            var difference = 0;
+            var diff = 0;
             // another for loop to loop through each of the scores arrays for the friendsData api
             for (var j = 0; j < userScores.length; j++) {
                 diff += Math.abs(friends[i].scores[j] - userScores[j]);
