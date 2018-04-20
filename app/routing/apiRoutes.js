@@ -32,18 +32,18 @@ module.exports = function (app) {
             for (var j = 0; j < userScores.length; j++) {
                 diff += Math.abs(friends[i].scores[j] - userScores[j]);
             }
-            if ( diff < totalDifference ) {
+            if (diff < totalDifference) {
                 // make the total difference equal to the diff as it loops through so the result at the end of the loop
                 // is the true lowest difference
                 totalDifference = diff;
                 bestFriendName = friends[i].name;
                 bestFriendImg = friends[i].photo;
             }
-            // adds the current user to the friendsData api
-            friends.push(userInput);
-
-            // sends the response.
-            res.json({name: bestFriendName, photo: bestFriendImg});
         }
+        // adds the current user to the friendsData api
+        friends.push(userInput);
+
+        // sends the response.
+        res.json({ name: bestFriendName, photo: bestFriendImg });
     });
 };
