@@ -345,7 +345,7 @@
                     // adds user input to array in the friendsData API and opens the modal
                     $.post("/api/friends", userInput, function(data) {
                         $("#bestFriendName").text(data.name);
-                        $("bestFriendImg").attr("src", data.photo);
+                        $("#bestFriendImg").attr("src", data.photo);
                         $("#modal1").modal("open");
                     })
                 }
