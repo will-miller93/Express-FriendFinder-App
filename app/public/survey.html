@@ -282,7 +282,7 @@
                     <h3> Your new friend </h5>
                     <div class="divider"></div>
                     <h4 id="bestFriendName"></h4>
-                    <img class="materialboxed" id="bestFriendImg" src="">
+                    <img id="bestFriendImg" src="">
                 </div>
             </div>
         </div>
@@ -322,7 +322,8 @@
                 return valid;
             }
             
-            var userInput = {
+            if (validateForm() === true) {
+                var userInput = {
                 name: $("#name").val().trim(),
                 img: $("#link").val().trim(),
                 scores: [
@@ -339,15 +340,15 @@
 
                 ]
             };
-            // adds user input to array in the friendsData API
-            $.post("/api/friends", userInput)
-                .done(function(data){
-                    $("#bestFriendName").html(data.bestFriendName);
-                    $("bestFriendImg").attr("src", data.bestFriendImg);
-                    $("#modal1").modal("open");
-                });
-            validateForm(); 
-        });
+            // adds user input to array in the friendsData API and opens the modal
+            $.post("/api/friends", userInput, function(data) {
+                $("#bestFriendName").text(data.bestFriendName);
+                $("bestFriendImg").attr("src", data.bestFriendImg);
+                $("#modal1").modal("open");
+            })
+        }
+        validateForm(); 
+    });
     </script>
 
 </body>
