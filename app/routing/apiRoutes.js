@@ -37,7 +37,6 @@ module.exports = function (app) {
                 // is the true lowest difference
                 totalDifference = diff;
                 bestFriendName = friends[i].name;
-                console.log(friends[i].name);
                 bestFriendImg = friends[i].photo;
             }
         }
@@ -45,6 +44,6 @@ module.exports = function (app) {
         friends.push(userInput);
 
         // sends the response.
-        res.json({bestFriendName: bestFriendName, bestFriendImg: bestFriendImg});
+        res.json({name: bestFriendName, photo: bestFriendImg});
     });
 };
